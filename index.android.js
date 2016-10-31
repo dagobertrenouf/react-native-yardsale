@@ -6,27 +6,31 @@
 
 import React, { Component } from 'react';
 import {
+  ActivityIndicator,
   AppRegistry,
   StyleSheet,
   Text,
   View
 } from 'react-native';
+import Relay, {
+  DefaultNetworkLayer,
+  RootContainer
+} from 'react-relay';
+import Reindex from 'reindex-js';
+import TodoList, { TodoListRoute }  from './todoList';
+
+const reindex = new Reindex('https://elemental-helium-938.myreindex.com');
+
+Relay.injectNetworkLayer(reindex.getRelayNetworkLayer());
 
 export default class yardsale extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
+      <RootContainer
+        Component={TodoList}
+        route={new TodoListRoute()}
+        renderLoading={() => <ActivityIndicator/>}
+      />
     );
   }
 }
