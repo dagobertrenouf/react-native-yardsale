@@ -18,8 +18,9 @@ import Relay, {
 } from 'react-relay';
 import Reindex from 'reindex-js';
 import TodoList, { TodoListRoute }  from './todoList';
+import config from './config';
 
-const reindex = new Reindex('https://elemental-helium-938.myreindex.com');
+const reindex = new Reindex(config.REINDEX_URL);
 
 Relay.injectNetworkLayer(reindex.getRelayNetworkLayer());
 

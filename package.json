@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "import": "npm run transpile-import && node import/import.js",
+    "transpile-import": "babel import/importScript.js -o import/importScriptEs5.js"
   },
   "dependencies": {
     "react": "15.3.2",
@@ -18,6 +20,7 @@
   "devDependencies": {
     "babel-core": "^6.18.0",
     "babel-jest": "16.0.0",
+    "babel-polyfill": "^6.16.0",
     "babel-preset-react-native": "1.9.0",
     "babel-relay-plugin": "^0.9.3",
     "jest": "16.0.2",
