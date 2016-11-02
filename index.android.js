@@ -1,53 +1,19 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+import React from 'react';
+import { AppRegistry } from 'react-native';
+import ApolloClient, {
+  createNetworkInterface
+} from 'apollo-client';
+import { ApolloProvider } from 'react-apollo';
+import App from './src/app';
 
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
-
-export default class yardsale extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+const client = new ApolloClient({
+  networkInterface: createNetworkInterface({ uri: 'https://api.graph.cool/simple/v1/civ0vd7hs12j90113l9p8bpi7' })
 });
 
-AppRegistry.registerComponent('yardsale', () => yardsale);
+const Yardsale = () => (
+  <ApolloProvider client={client}>
+    <App />
+  </ApolloProvider>
+)
+
+AppRegistry.registerComponent('yardsale', () => Yardsale);
